@@ -47,7 +47,7 @@ class Theme {
 		return file_exists($path) ? ASSETS_URL . '/js/' . $name . '.js' : false;
 	}
 
-	public static function getImage($image) {
+	public static function getImage($image, $extension) {
 		$path = ASSETS_DIR . '/images/' . $name . '.' . $extension;
 		return file_exists($path) ? ASSETS_URL . '/images/' . $name . '.' . $extension : false;
 	}
