@@ -1,0 +1,15 @@
+/**
+ * Theme Name: THEME_NAME
+ * Version: THEME_VERSION
+ * Author: THEME_AUTHOR
+ *
+ * This file exists merely due to WordPress' theming method. All styles are generated using SCSS
+ * with a Gulp compiler. Please follow the steps below:
+ *
+ * 1. Open a command line and navigate to the theme directory
+ * 2. Run the "npm install" command (requires Node)
+ * 3. Once complete, run the "gulp" command
+ *
+ * If you don't get any error messages with the above steps, then you'll be able to modify the
+ * theme styles correctly and without issue.
+ */

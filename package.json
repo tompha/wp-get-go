@@ -1,0 +1,22 @@
+{
+	"name": "get-go",
+	"version": "1.0.0",
+	"main": "gulpfile.js",
+	"license": "MIT",
+	"devDependencies": {
+		"babel-preset-es2015": "^6.13.2",
+		"colors": "^1.1.2",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^3.1.1",
+		"gulp-babel": "^6.1.2",
+		"gulp-concat": "^2.6.1",
+		"gulp-rename": "^1.2.2",
+		"gulp-sass": "^2.3.2",
+		"gulp-sourcemaps": "^1.6.0",
+		"gulp-uglify": "^2.0.0",
+		"gulp-util": "^3.0.7",
+		"gulp-watch": "^4.3.9",
+		"node-notifier": "^4.6.1",
+		"yargs": "^5.0.0"
+	}
+}
