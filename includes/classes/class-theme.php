@@ -1,12 +1,10 @@
 <?php
-namespace Theme;
-
 class Theme {
 	public static function enqueueStyle(
 		$name,
 		$source,
 		$external = false,
-		$dependecies = array(),
+		$dependencies = array(),
 		$version = '1.0.0'
 	) {
 		if ($external == false) {
@@ -24,7 +22,7 @@ class Theme {
 		$name,
 		$source,
 		$external = false,
-		$dependecies = array(),
+		$dependencies = array(),
 		$version = '1.0.0',
 		$inFooter = false
 	) {
