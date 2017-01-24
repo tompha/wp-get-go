@@ -1,88 +1,88 @@
 @mixin ib() {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
 }
 
 @mixin transition($args...) {
-	-webkit-transition: $args;
-	   -moz-transition: $args;
-	    -ms-transition: $args;
-		 -o-transition: $args;
-			transition: $args;
+    -webkit-transition: $args;
+       -moz-transition: $args;
+        -ms-transition: $args;
+         -o-transition: $args;
+            transition: $args;
 }
 
 @mixin transform($args) {
-	-webkit-transform: $args;
-	   -moz-transform: $args;
-	    -ms-transform: $args;
-		 -o-transform: $args;
-			transform: $args;
+    -webkit-transform: $args;
+       -moz-transform: $args;
+        -ms-transform: $args;
+         -o-transform: $args;
+            transform: $args;
 }
 
 @mixin border-radius($args) {
-	-webkit-border-radius: $args;
-	   -moz-border-radius: $args;
-	   	-ms-border-radius: $args;
-		 -o-border-radius: $args;
-			border-radius: $args;
+    -webkit-border-radius: $args;
+       -moz-border-radius: $args;
+           -ms-border-radius: $args;
+         -o-border-radius: $args;
+            border-radius: $args;
 }
 
 @mixin box-shadow($args...) {
-	-webkit-box-shadow: $args;
-	   -moz-box-shadow: $args;
-	    -ms-box-shadow: $args;
-		 -o-box-shadow: $args;
-			box-shadow: $args;
+    -webkit-box-shadow: $args;
+       -moz-box-shadow: $args;
+        -ms-box-shadow: $args;
+         -o-box-shadow: $args;
+            box-shadow: $args;
 }
 
 @mixin user-select($args) {
-	-webkit-user-select: $args;
-	   -moz-user-select: $args;
-	   	-ms-user-select: $args;
-		 -o-user-select: $args;
-		    user-select: $args;
+    -webkit-user-select: $args;
+       -moz-user-select: $args;
+           -ms-user-select: $args;
+         -o-user-select: $args;
+            user-select: $args;
 }
 
 @mixin transparent-background($color, $opacity: 1) {
-	background-color: $color;
-	background-color: rgba($color, $opacity);
+    background-color: $color;
+    background-color: rgba($color, $opacity);
 }
 
 @mixin linear-gradient($direction, $color-stops...) {
-	@if is-direction($direction) == false {
-		$color-stops: $direction, $color-stops;
-		$direction: 180deg;
-	}
+    @if is-direction($direction) == false {
+        $color-stops: $direction, $color-stops;
+        $direction: 180deg;
+    }
 
-	background: nth(nth($color-stops, 1), 1);
-	background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
-	background: linear-gradient($direction, $color-stops);
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
 }
 
 /* fonts */
 @mixin font($size: false, $color: false, $weight: false, $family: false) {
-	@if $size {
-		font-size: $size;
-	} @else {
-		font-size: 15px;
-	}
+    @if $size {
+        font-size: $size;
+    } @else {
+        font-size: 15px;
+    }
 
-	@if $color {
-		color: $color;
-	} @else {
-		color: color(black);
-	}
+    @if $color {
+        color: $color;
+    } @else {
+        color: color(black);
+    }
 
-	@if $family {
-		font-family: $family;
-	} @else {
-		font-family: map-get($font-stacks, body);
-	}
+    @if $family {
+        font-family: $family;
+    } @else {
+        font-family: map-get($font-stacks, body);
+    }
 
-	@if $weight {
-		font-weight: $weight;
-	} @else {
-		font-weight: normal;
-	}
+    @if $weight {
+        font-weight: $weight;
+    } @else {
+        font-weight: normal;
+    }
 }
