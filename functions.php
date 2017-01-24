@@ -38,26 +38,20 @@
  * Custom functions
 **/
     function theme_initialisation() {
-        if (is_admin() || in_array($GLOBALS['pagenow'], array('wp-register.php', 'wp-login.php'))) {
-            return;
+        add_theme_support('html5');
+        add_theme_support('post-thumbnails');
+
+        /* menus */
+        register_nav_menu('main', 'Main Menu');
+
+        /* acf */
+        if (function_exists('acf_add_options_page')) {
+            acf_add_options_page(array(
+                'page_title' => 'Options',
+                'parent_slug' => 'themes.php',
+                'menu_slug' => 'theme-options'
+            ));
         }
-
-        /* styles */
-        Theme::enqueueStyle('theme-styles', 'theme');
-
-        /* scripts */
-        if (wp_script_is('jquery', 'registered')) {
-            wp_deregister_script('jquery');
-        }
-
-        Theme::enqueueScript(
-            'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
-            true, array(), '1.12.4', false
-        );
-
-        Theme::enqueueScript('theme-plugins', 'plugins');
-        Theme::enqueueScript('theme-libraries', 'libraries');
-        Theme::enqueueScript('theme-general', 'theme');
     }
 
     function load_theme_assets() {
@@ -70,7 +64,7 @@
 
         /* scripts */
         if (wp_script_is('jquery', 'registered')) {
-            wp_register_script('jquery');
+            wp_deregister_script('jquery');
         }
 
         Theme::enqueueScript(
