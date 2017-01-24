@@ -47,7 +47,7 @@ class Theme {
 		return file_exists($path) ? ASSETS_URL . '/js/' . $name . '.js' : false;
 	}
 
-	public static function getImage($image, $extension) {
+	public static function getImage($name, $extension) {
 		$path = ASSETS_DIR . '/images/' . $name . '.' . $extension;
 		return file_exists($path) ? ASSETS_URL . '/images/' . $name . '.' . $extension : false;
 	}
@@ -64,5 +64,27 @@ class Theme {
 		if ($endScript === true) {
 			exit;
 		}
+	}
+
+	public static function obfuscate($string) {
+		if (strlen($string) > 0) {
+			$obfuscation = array();
+
+			for ($i = 0; $i < strlen($string); $i++) {
+				$obfuscation[] = sprintf('&#%s;', ord($string[$i]));
+			}
+
+			return implode('', $obfuscation);
+		}
+
+		return $string;
+	}
+
+	public static function __return_low() {
+		return 'low';
+	}
+
+	public static function __return_high() {
+		return 'high';
 	}
 }

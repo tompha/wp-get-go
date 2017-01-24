@@ -2,7 +2,7 @@
 /**
  * Register any necessary taxonomies to be used throughout the build
  */
-	function register_taxonomies() {
+	function register_custom_taxonomies() {
 		$taxonomies = array();
 
 		if (!empty($taxonomies)) {
