@@ -53,8 +53,8 @@ gulp.task('scripts', function() {
 
 gulp.task('watch', function() {
     if (!argv.nowatch) {
-        gulp.watch('./scss/**/*.scss', ['styles']);
-        gulp.watch('./js/**/*.js', ['scripts']);
+        gulp.watch('./src/scss/**/*.scss', ['styles']);
+        gulp.watch('./src/js/**/*.js', ['scripts']);
     }
 });
 
