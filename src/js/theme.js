@@ -28,21 +28,28 @@
 			}
 
 			return el;
-		}
+		};
+
+	/**
+	 * Pseudo-destructor
+	 */
+		return {
+			init: init
+		};
 	})();
 
 /**
  * Event bindings
  */
 	$(document).on('ready', function() {
-		Theme.init.domLoaded();
+		Theme.init().domLoaded();
 	});
 
 	$(window).on('load', function() {
-		Theme.init.pageLoaded();
+		Theme.init().pageLoaded();
 	});
 
 	$(window).on('resize', function() {
-		Theme.init.pageResized();
+		Theme.init().pageResized();
 	});
 }(jQuery));
