@@ -1,0 +1,3 @@
+const $ = jQuery;
+
+import './router';
