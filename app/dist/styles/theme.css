@@ -1,0 +1,290 @@
+/* helpers */
+/* fonts */
+/* site */
+/*
+ * Reset & Basics (Inspired by E. Meyers)
+ **/
+html, body, div, span, applet,
+object, iframe, h1, h2, h3, h4,
+h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big,
+cite, code, del, dfn, em, img,
+ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt,
+var, b, u, i, center, dl, dt,
+dd, ol, ul, li, fieldset, form,
+label, legend, table, caption,
+tbody, tfoot, thead, tr, th,
+td, article, aside, canvas,
+details, embed, figure,
+figcaption, footer, header,
+hgroup, menu, nav, output,
+ruby, section, summary, time,
+mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details,
+figcaption, figure, footer,
+header, hgroup, menu, nav,
+section, main {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after, q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Basic Styles
+ **/
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+/*
+ * Typography
+ **/
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 a, h2 a, h3 a, h4 a,
+h5 a, h6 a {
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+/*
+ * Code
+ **/
+pre, code {
+  font: 12px "Monaco", Courier, sans-serif;
+  text-indent: 0;
+  overflow-x: scroll;
+}
+
+pre {
+  display: block;
+  background: #ff0;
+  padding: 10px;
+  position: relative;
+  z-index: 9999;
+  color: #000;
+  clear: both;
+}
+
+pre:before, pre:after {
+  display: block;
+  font: 16px "Monaco", Courier, sans-serif;
+  color: #c00;
+}
+
+pre:before {
+  content: "$> debug";
+  margin-bottom: 10px;
+}
+
+pre:after {
+  content: "$> exit";
+  margin-top: 10px;
+}
+
+code {
+  background: #666;
+  border-radius: 3px;
+}
+
+/*
+ * Links
+ **/
+a {
+  transition: all ease-in-out 0.3s;
+}
+
+/*
+ * Forms
+ **/
+input[type="text"],
+input[type="password"],
+select, textarea {
+  -webkit-appearance: none;
+}
+
+/*
+ * Lists
+ **/
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: disc outside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+/*
+ * Clearfix
+ **/
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+html {
+  height: 100%;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-size: 15px;
+  color: #000;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  background-color: #fff;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+i, em {
+  font-style: italic;
+}
+
+/* classes */
+.ib-wrap {
+  font-size: 0;
+}
+
+.ib {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container.hold {
+  position: relative;
+}
+
+/* wordpress */
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* parts */
+/* pages */
