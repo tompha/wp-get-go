@@ -26,7 +26,21 @@ const browserSync = require('browser-sync').create();
  */
 gulp.task('compile:styles', function() {
     let stream = gulp.src('./app/styles/app.scss').pipe(plumber({
-        errorHandler: stylesError
+        errorHandler: function(error) {
+            let errorObject = JSON.parse(JSON.stringify(error));
+
+            util.log(colors.red('COMPILATION ERROR'));
+            console.log('File: ' + errorObject.relativePath);
+            console.log('Line: ' + errorObject.line + ':' + errorObject.column);
+            console.log(errorObject.message.replace(errorObject.relativePath + "\n", ''));
+
+            notifier.notify({
+                title: 'Error in ' + errorObject.relativePath,
+                message: errorObject.relativePath + ' on line ' + errorObject.line + ':' + errorObject.column
+            });
+
+            this.emit('end');
+        }
     }));
 
     stream = stream.pipe(sourcemap.init());
@@ -34,8 +48,9 @@ gulp.task('compile:styles', function() {
     stream = stream.pipe(prefix('last 2 versions'));
     stream = stream.pipe(concat('app.css'));
     stream = stream.pipe(argv.compress ? util.noop() : sourcemap.write());
+    stream = stream.pipe(gulp.dest('./public/css/'));
 
-    stream.pipe(gulp.dest('./public/css/'));
+    return stream.pipe(browserSync.stream());
 });
 
 gulp.task('compile:scripts', function() {
@@ -44,13 +59,18 @@ gulp.task('compile:scripts', function() {
         compact: false
     }).bundle().on('error', function(error) {
         util.log(colors.red('COMPILATION ERROR'));
-        console.log(error.codeFrame);
 
-        notifier.notify({
-            title: 'Error in ' + error.filename.split('/').pop(),
-            message: error.filename.split('/').pop() + ' on line ' + error.loc.line + ':' + error.loc.column
-        });
+        let notificationArgs = {};
 
+        if (error.hasOwnProperty('filename')) {
+            console.log(error.codeFrame);
+            notificationArgs['title'] = 'Error in ' + error.filename.split('/').pop();
+            notificationArgs['message'] = error.filename.split('').pop() + ' on line ' + error.loc.line + ':' + error.loc.column;
+        } else {
+            notificationArgs['title'] = 'Script compilation error';
+        }
+
+        notifier.notify(notificationArgs);
         this.emit('end');
     });
 
@@ -110,17 +130,3 @@ function stylesError(error) {
     notifier.notify(notificationArgs);
     this.emit('end');
 };
-
-function scriptsError(error) {
-    error = JSON.parse(error);
-
-    let notificationArgs = {
-        title: 'Error in ' + error.relativePath
-    };
-
-    util.log(colors.red('COMPILATION ERROR'));
-
-    console.log(error);
-
-    this.emit('end');
-}
