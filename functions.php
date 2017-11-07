@@ -11,20 +11,7 @@
 /**
  * Autoloading
 **/
-    $themeClasses = glob(INCLUDES_DIR . '/classes/*.php');
-    $themeScripts = glob(INCLUDES_DIR . '/general/*.php');
-
-    if (!empty($themeClasses)) {
-        foreach ($themeClasses as $classPath) {
-            require_once $classPath;
-        }
-    }
-
-    if (!empty($themeScripts)) {
-        foreach ($themeScripts as $scriptPath) {
-            require_once $scriptPath;
-        }
-    }
+    require_once INCLUDES_DIR . '/autoload.php';
 
 /**
  * Hooks
