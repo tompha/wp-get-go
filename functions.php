@@ -3,10 +3,10 @@
  * Constants
 **/
     define('THEME_DIR', dirname(__FILE__));
-    define('ASSETS_DIR', THEME_DIR . '/assets');
+    define('ASSETS_DIR', THEME_DIR . '/public');
     define('INCLUDES_DIR', THEME_DIR . '/includes');
     define('THEME_URL', get_template_directory_uri());
-    define('ASSETS_URL', THEME_URL . '/assets');
+    define('ASSETS_URL', THEME_URL . '/public');
 
 /**
  * Autoloading
@@ -60,7 +60,7 @@
         }
 
         /* styles */
-        Theme::enqueueStyle('theme-styles', 'theme');
+        Theme::enqueueStyle('app', 'app');
 
         /* scripts */
         if (wp_script_is('jquery', 'registered')) {
@@ -72,13 +72,5 @@
             true, array(), '1.12.4', false
         );
 
-        /**
-         * Un-comment these two lines to enable the plugins any jQuery plugins or libraries
-         * that you intend to use in the build.
-         *
-         * Theme::enqueueScript('theme-plugins', 'plugins');
-         * Theme::enqueueScript('theme-libraries', 'libraries');
-         */
-
-        Theme::enqueueScript('theme-general', 'theme');
+        Theme::enqueueScript('app', 'app');
     }
