@@ -41,10 +41,9 @@
         add_theme_support('html5');
         add_theme_support('post-thumbnails');
 
-        /* menus */
         register_nav_menu('main', 'Main Menu');
 
-        /* acf */
+        // acf options page
         if (function_exists('acf_add_options_page')) {
             acf_add_options_page(array(
                 'page_title' => 'Options',
@@ -59,18 +58,11 @@
             return;
         }
 
-        /* styles */
         Theme::enqueueStyle('app', 'app');
+	    Theme::enqueueScript('app', 'app');
 
-        /* scripts */
+        // remove WordPress' version of jQuery on the front-end
         if (wp_script_is('jquery', 'registered')) {
             wp_deregister_script('jquery');
         }
-
-        Theme::enqueueScript(
-            'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
-            true, array(), '1.12.4', false
-        );
-
-        Theme::enqueueScript('app', 'app');
     }
