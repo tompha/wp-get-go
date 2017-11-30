@@ -1,0 +1,90 @@
+body {
+    background-color: $layout-background;
+    color: $layout-text;
+    font-family: $font-body;
+    font-size: 16px;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+i, em {
+    font-style: italic;
+}
+
+a {
+    transition: all 0.15s ease-in-out;
+    color: $layout-black;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 15px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 38px;
+}
+
+h2 {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+h5 {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+h6 {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+p {
+    margin: 0 0 15px;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+ul, ol {}
+
+// forms
+:focus {
+    outline: none;
+}
+
+// content
+.content-area {
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+
+    // images
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+
+        @include breakpoint(tablet-small) {
+            width: 100%;
+            max-width: none;
+            height: auto;
+        }
+    }
+}

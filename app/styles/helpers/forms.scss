@@ -1,0 +1,31 @@
+input, textarea, select {
+    background-color: $layout-white;
+    margin: 0;
+    padding: 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    color: $layout-black;
+    font-family: $font-body;
+    font-size: 16px;
+    line-height: 22px;
+
+    &::-webkit-input-placeholder {
+        color: rgba($layout-black, 0.5);
+    }
+
+    &::-moz-placeholder {
+        color: rgba($layout-black, 0.5);
+    }
+
+    &:-ms-input-placeholder {
+        color: rgba($layout-black, 0.5);
+    }
+
+    &:-moz-placeholder {
+        color: rgba($layout-black, 0.5);
+    }
+}
+
+input, select {
+    height: 32px;
+}

@@ -1,17 +1,22 @@
-/* helpers */
+// helpers
+@import 'normalize-scss/sass/normalize/import-now';
 @import 'helpers/mixins';
 @import 'helpers/functions';
 @import 'helpers/variables';
+@import 'helpers/layout';
+@import 'helpers/typography';
+@import 'helpers/forms';
+@import 'helpers/wordpress';
 
-/* site */
-@import 'global/reset';
-@import 'global/site';
-@import 'global/content';
-@import 'global/forms';
+// modules
 
-/* parts */
+
+// components
+
+
+// parts
 @import 'parts/header';
 @import 'parts/footer';
 
-/* pages */
+// pages
 @import 'pages/general';

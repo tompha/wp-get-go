@@ -1,12 +1,19 @@
-$colors: (
-	white: (
-		normal: #fff
-	),
-	black: (
-		normal: #000
-	)
-);
+// colours
+$layout-white: #fff;
+$layout-black: #000;
+$layout-background: $layout-white;
+$layout-text: $layout-black;
 
-$font-stacks: (
-	body: #{'"Helvetica Neue", Helvetica, Arial, sans-serif'}
+// fonts
+$font-body: #{'"Helvetica Neue", Helvetica, Arial, sans-serif'};
+
+// breakpoints
+$breakpoints: (
+    desktop-large: 1440,
+    desktop-small: 1280,
+    tablet-large: 1024,
+    tablet-small: 768,
+    mobile-large: 600,
+    mobile-medium: 480,
+    mobile-small: 420
 );
