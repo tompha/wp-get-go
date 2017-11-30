@@ -13,6 +13,7 @@ const notifier    = require('node-notifier');
 const colors      = require('colors');
 const util        = require('gulp-util');
 const uglify      = require('gulp-uglify');
+const imageop     = require('gulp-image-optimization');
 const argv        = require('yargs').argv;
 const browserify  = require('browserify');
 const babelify    = require('babelify');
@@ -27,16 +28,16 @@ const browserSync = require('browser-sync').create();
 gulp.task('compile:styles', function() {
     let stream = gulp.src('./app/styles/app.scss').pipe(plumber({
         errorHandler: function(error) {
-            let errorObject = JSON.parse(JSON.stringify(error));
+            error = JSON.parse(JSON.stringify(error));
 
             util.log(colors.red('COMPILATION ERROR'));
-            console.log('File: ' + errorObject.relativePath);
-            console.log('Line: ' + errorObject.line + ':' + errorObject.column);
-            console.log(errorObject.message.replace(errorObject.relativePath + "\n", ''));
+            console.log('File: ' + error.relativePath);
+            console.log('Line: ' + error.line + ':' + error.column);
+            console.log(error.message.replace(error.relativePath + "\n", ''));
 
             notifier.notify({
-                title: 'Error in ' + errorObject.relativePath,
-                message: errorObject.relativePath + ' on line ' + errorObject.line + ':' + errorObject.column
+                title: 'Error in ' + error.relativePath,
+                message: error.relativePath + ' on line ' + error.line + ':' + error.column
             });
 
             this.emit('end');
@@ -44,7 +45,11 @@ gulp.task('compile:styles', function() {
     }));
 
     stream = stream.pipe(sourcemap.init());
-    stream = stream.pipe(sass({ outputStyle: (argv.compress ? 'compressed' : 'expanded' ) }));
+    stream = stream.pipe(sass({
+        outputStyle: (argv.compress ? 'compressed' : 'expanded'),
+        includePaths: ['node_modules']
+    }));
+
     stream = stream.pipe(prefix('last 2 versions'));
     stream = stream.pipe(concat('app.css'));
     stream = stream.pipe(argv.compress ? util.noop() : sourcemap.write());
@@ -60,14 +65,16 @@ gulp.task('compile:scripts', function() {
     }).bundle().on('error', function(error) {
         util.log(colors.red('COMPILATION ERROR'));
 
-        let notificationArgs = {};
+        let notificationArgs = {
+            title: 'Browserify error'
+        };
 
         if (error.hasOwnProperty('filename')) {
             console.log(error.codeFrame);
-            notificationArgs['title'] = 'Error in ' + error.filename.split('/').pop();
             notificationArgs['message'] = error.filename.split('').pop() + ' on line ' + error.loc.line + ':' + error.loc.column;
         } else {
-            notificationArgs['title'] = 'Script compilation error';
+            util.log(colors.yellow(error.message));
+            notificationArgs['message'] = error.message;
         }
 
         notifier.notify(notificationArgs);
@@ -84,6 +91,19 @@ gulp.task('compile:scripts', function() {
     return bundle.pipe(browserSync.stream());
 });
 
+gulp.task('optimise:images', function() {
+    gulp.src([
+        'public/images/**.png',
+        'public/images/**.gif',
+        'public/images/**.jpg',
+        'public/images/**.jpeg'
+    ]).pipe(imageop({
+        progressive: true,
+        optimizationLevel: 5,
+        interlaced: true
+    })).pipe(gulp.dest('public/images/'));
+});
+
 gulp.task('watch:styles', function() {
     gulp.watch('app/styles/**/*.scss', ['compile:styles']);
 });
@@ -96,6 +116,19 @@ gulp.task('watch:templates', function() {
     gulp.watch('**/*.php').on('change', () => browserSync.reload());
 });
 
+gulp.task('watch:images', () => {
+    gulp.watch([
+        'public/images/**.png',
+        'public/images/**.gif',
+        'public/images/**.jpg',
+        'public/images/**.jpeg'
+    ]).on('change' , file => gulp.src(file.path).pipe(imageop({
+        progressive: true,
+        optimizationLevel: 5,
+        interlaced: true
+    })));
+});
+
 gulp.task('bs:sync', function() {
     browserSync.init({
         proxy: argv.proxy,
@@ -104,29 +137,5 @@ gulp.task('bs:sync', function() {
     });
 });
 
-gulp.task('watch', ['bs:sync', 'watch:templates', 'watch:styles', 'watch:scripts']);
-gulp.task('compile', ['compile:styles', 'compile:scripts']);
-
-/**
- * Error handling
- */
-function stylesError(error) {
-    let errorObject = JSON.parse(JSON.stringify(error));
-    let notificationArgs = {
-        title: 'Error in ' + errorObject.relativePath
-    };
-
-    util.log(colors.red('COMPILATION ERROR'));
-
-    if (Object.keys(errorObject).length > 0) {
-        console.log('File: ' + errorObject.relativePath);
-        console.log('Line: ' + errorObject.line + ':' + errorObject.column);
-        console.log(errorObject.message.replace(errorObject.relativePath + "\n", ''));
-        notificationArgs.message = errorObject.relativePath + ' on line ' + errorObject.line + ':' + errorObject.column;
-    } else {
-        console.log(error);
-    }
-
-    notifier.notify(notificationArgs);
-    this.emit('end');
-};
+gulp.task('watch', ['bs:sync', 'watch:templates', 'watch:styles', 'watch:scripts', 'watch:images']);
+gulp.task('compile', ['compile:styles', 'compile:scripts', 'optimise:images']);
