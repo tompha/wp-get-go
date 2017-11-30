@@ -2,7 +2,7 @@
 /**
  * Autoload any necessary files from the specified directories
  */
-$directories = ['classes', 'general', 'ajax'];
+$directories = ['classes', 'theme', 'ajax'];
 
 foreach ($directories as $directory) {
 	$path = __DIR__ . '/' . $directory;

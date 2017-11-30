@@ -9,12 +9,18 @@
         <?php wp_head(); ?>
 
         <script>
-            window.siteParameters = {
-                url: '<?php bloginfo('url'); ?>',
-                theme: '<?php echo get_template_directory_uri(); ?>',
-                debug: parseInt('<?php echo WP_DEBUG ? 'true' : 'false'; ?>'),
-                user_logged_in: parseInt('<?php echo is_user_logged_in() ? 'true' : 'false'; ?>')
-            };
+            window.App = <?= json_encode([
+		        'urls'      => [
+			        'site'  => home_url(),
+			        'theme' => get_template_directory_uri(),
+			        'ajax'  => admin_url('admin-ajax.php')
+		        ],
+		        'variables' => [
+			        'debug'    => (bool) WP_DEBUG,
+			        'loggedIn' => (bool) is_user_logged_in()
+		        ],
+		        'data'      => []
+	        ]); ?>;
         </script>
     </head>
 
