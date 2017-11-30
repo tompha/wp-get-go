@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class: Theme
+ *
+ * @TODO this needs re-factoring to something better
+ *
+ * @package Theme
+ * @since   1.0.0
+ */
 class Theme {
     public static function enqueueStyle(
         $name,

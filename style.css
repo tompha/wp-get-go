@@ -1,14 +1,24 @@
 /**
  * Theme Name: THEME_NAME
- * Version: THEME_VERSION
+ * Version: 1.0.0
  * Author: THEME_AUTHOR
  *
- * This file exists merely due to WordPress' theming method. All styles are generated using SCSS
- * with a Gulp compiler. Please follow the steps below:
+ * This file exists merely due to WordPress' theming method. All assets are compiled with Gulp,
+ * which you can install by navigating to this folder on the command line and running "yarn".
  *
- * 1. Open a command line and navigate to the theme directory
- * 2. Run the "npm install" command (requires Node)
- * 3. Once complete, run the "gulp" command
+ * If you haven't got Node, Yarn, or Gulp installed then you'll need to install them from the following links:
+ *
+ * Node: https://nodejs.org/
+ * Yarn: https://yarnpkg.com/en/docs/install
+ * Gulp: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+ *
+ * Once the above packages are installed and you've verified that they work, then follow the below steps:
+ *
+ * 1. Open your preferred CLI tool and navigate to this directory
+ * 2. Run "yarn"
+ * 3. Start the build tools
+ *   3.1. To compile everything once, use "gulp compile"
+ *   3.2. To watch all assets while you make changes, use "gulp watch"
  *
  * If you don't get any error messages with the above steps, then you'll be able to modify the
  * theme styles correctly and without issue.

@@ -1,6 +1,9 @@
 <?php
 /**
  * Autoload any necessary files from the specified directories
+ *
+ * @package Theme
+ * @since   1.0.0
  */
 $directories = ['classes', 'theme', 'ajax'];
 
