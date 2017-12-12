@@ -16,13 +16,13 @@ add_action('init', function() {
         return;
     }
 
+    Theme::enqueueScript(
+        'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
+        true, [], '2.2.4', false
+    );
+
     Theme::enqueueStyle('app', 'app');
     Theme::enqueueScript('app', 'app');
-
-    // remove WordPress' version of jQuery on the front-end
-    if (wp_script_is('jquery', 'registered')) {
-        wp_deregister_script('jquery');
-    }
 });
 
 // register any additional functionality needed
