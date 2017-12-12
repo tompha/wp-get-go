@@ -69,7 +69,7 @@ gulp.task('compile:scripts', function() {
             title: 'Browserify error'
         };
 
-        if (error.hasOwnProperty('filename')) {
+        if (error.filename && error.loc) {
             console.log(error.codeFrame);
             notificationArgs['message'] = error.filename.split('').pop() + ' on line ' + error.loc.line + ':' + error.loc.column;
         } else {
@@ -118,10 +118,10 @@ gulp.task('watch:templates', function() {
 
 gulp.task('watch:images', () => {
     gulp.watch([
-        'public/images/**.png',
-        'public/images/**.gif',
-        'public/images/**.jpg',
-        'public/images/**.jpeg'
+        'public/images/**/*.png',
+        'public/images/**/*.gif',
+        'public/images/**/*.jpg',
+        'public/images/**/*.jpeg'
     ]).on('change' , file => gulp.src(file.path).pipe(imageop({
         progressive: true,
         optimizationLevel: 5,
