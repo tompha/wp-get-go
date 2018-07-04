@@ -6,11 +6,14 @@
  * @since   1.0.0
  */
 
-// register any post types/taxonomies needed
-add_action('init', 'register_custom_post_types');
-add_action('init', 'register_custom_taxonomies');
+/**
+ * Hide the admin bar on the front-end
+ */
+add_action('show_admin_bar', '__return_false');
 
-// load any assets needed
+/**
+ * Load the theme assets
+ */
 add_action('init', function() {
     if (is_admin() || in_array($GLOBALS['pagenow'], ['wp-register.php', 'wp-login.php'])) {
         return;
@@ -25,21 +28,25 @@ add_action('init', function() {
     Theme::enqueueScript('app', 'app');
 });
 
-// register any additional functionality needed
+/**
+ * Register any specific theme functionality
+ */
 add_action('after_setup_theme', function() {
-    // theme support
     add_theme_support('html5');
     add_theme_support('post-thumbnails');
 
-    // menus
     register_nav_menu('main', 'Main Menu');
 
-    // theme options page
     if (function_exists('acf_add_options_page')) {
         acf_add_options_page([
-            'page_title'  => 'Options',
-            'parent_slug' => 'themes.php',
+            'page_title'  => 'Theme',
+            'parent_slug' => 'options-general.php',
             'menu_slug'   => 'theme-options'
         ]);
     }
 });
+
+/**
+ * Reduce Yoast SEO meta box priority
+ */
+add_filter('wpseo_metabox_prio', '__return_low');
