@@ -19,31 +19,40 @@ require_once APP_DIR . '/autoload.php';
  * Output the current or specified post object's flexible layout blocks
  * 
  * @param int $id The post ID to find content for. Defaults to null.
+ * @param bool $wrap Whether the blocks should be wrapped with another element
+ * @param array $classes Any additional classes to put on the wrapper
+ * @return void
  */
-function output_flexible_layout_blocks($id = null) {
+function output_flexible_layout_blocks($id = null, $wrap = true, $classes = []) {
     if ($id === null) {
         $id = get_the_ID();
     }
 
-    $output = '';
     $blocks = get_field('page_builder_blocks', $id);
 
     if ($blocks) {
-        ob_start();
+        $block_wrapper = '%s';
+        $block_markup = [];
 
         foreach ($blocks as $block) {
             $name = $block['acf_fc_layout'];
 
             if (page_builder_block_exists($name)) {
-                set_query_var('block', $block);
+                ob_start();
+                set_query_var('block', (object)$block);
                 get_template_part('resources/page-builder/' . $name);
             }
 
-            $output = sprintf('<div class="page-blocks">%s</div>', ob_get_clean());
+            $block_markup[] = ob_get_clean();
         }
-    }
 
-    echo $output;
+        if ($wrap === true) {
+            $classes = array_merge(['page-blocks'], $classes);
+            $block_wrapper = '<div class="page-blocks">%s</div>';
+        }
+
+        echo sprintf($block_wrapper, implode('', $block_markup));
+    }
 }
 
 /**
@@ -64,4 +73,15 @@ function page_builder_block_exists($name) {
  */
 function format_phone_link($number) {
     return sprintf('tel:+44%s', ltrim(str_replace(' ', '', $number), '0'));
+}
+
+/**
+ * Get a theme-specific setting from the theme options page
+ * 
+ * @param string $name
+ * @param string $scope
+ * @return mixed
+ */
+function get_theme_option($name, $scope) {
+    return get_field('option_' . $scope . '_' . $name, 'option');
 }
