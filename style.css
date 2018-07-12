@@ -3,23 +3,20 @@
  * Version: 1.0.0
  * Author: THEME_AUTHOR
  *
- * This file exists merely due to WordPress' theming method. All assets are compiled with Gulp,
- * which you can install by navigating to this folder on the command line and running "yarn".
+ * This file exists merely due to WordPress' theming method. All assets are
+ * compiled with Yarn/Mix, which you can install by navigating to this folder
+ * on the command line and running "yarn".
  *
- * If you haven't got Node, Yarn, or Gulp installed then you'll need to install them from the following links:
+ * If you haven't got Yarn installed, then you'll need to install it from:
+ * https://yarnpkg.com/en/docs/install
  *
- * Node: https://nodejs.org/
- * Yarn: https://yarnpkg.com/en/docs/install
- * Gulp: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+ * Once Yarn is instaled, navigate to this folder on the command line and run
+ * the "yarn" command to install the required dependencies. When the
+ * dependencies are installed, then you can run one of the following commands
+ * to start compiling assets:
  *
- * Once the above packages are installed and you've verified that they work, then follow the below steps:
+ * 1. "yarn watch": Watch the source files and compile them on save
+ * 2. "yarn dev": Compile the source files, once
+ * 3. "yarn production": Compile and minify/compress the source files
  *
- * 1. Open your preferred CLI tool and navigate to this directory
- * 2. Run "yarn"
- * 3. Start the build tools
- *   3.1. To compile everything once, use "gulp compile"
- *   3.2. To watch all assets while you make changes, use "gulp watch"
- *
- * If you don't get any error messages with the above steps, then you'll be able to modify the
- * theme styles correctly and without issue.
  */
