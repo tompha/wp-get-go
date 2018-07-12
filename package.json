@@ -10,6 +10,9 @@
     "postinstall": "yarn dev"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^4.5.2",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-webpack-plugin": "^2.1.5",
     "jquery": "^3.3.1",
     "laravel-mix": "^2.1.11",
     "normalize-scss": "^7.0.1"
