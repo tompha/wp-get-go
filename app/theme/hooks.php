@@ -49,4 +49,6 @@ add_action('after_setup_theme', function() {
 /**
  * Reduce Yoast SEO meta box priority
  */
-add_filter('wpseo_metabox_prio', '__return_low');
+add_filter('wpseo_metabox_prio', function() {
+    return '__low';
+});
